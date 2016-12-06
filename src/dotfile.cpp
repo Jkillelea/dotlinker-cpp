@@ -25,10 +25,10 @@ DotFile::DotFile(string relative_filepath){
   exists = file.good();
 };
 
-DotFile::~DotFile() {
-  /* Look up how to actually do destructors in C++
-   */
-};
+// DotFile::~DotFile() {
+//   /* Look up how to actually do destructors in C++
+//    */
+// };
 
 bool DotFile::is_dotted() {
   return basename[0] == '.';
