@@ -1,3 +1,5 @@
+# This code is part of dotlinker-cpp
+# Copyright Jacob Killelea <jkillelea@protonmail.ch>
 EXEC         = dotlinker
 BUILD-DIR    = build
 SRC-DIR      = src
@@ -11,7 +13,6 @@ CFLAGS       += -Wall
 CFLAGS       += -I$(LIB-DIR)
 LFLAGS       += -lstdc++fs
 CC = $(NORMAL-CC)
-# CC = $(ARM-ABI-CC)
 
 all: $(EXEC)
 

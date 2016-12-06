@@ -1,3 +1,6 @@
+// This code is part of dotlinker-cpp
+// Copyright Jacob Killelea <jkillelea@protonmail.ch>
+// this script is just random testing crap, not to be used with the expectation of fucntionality
 #include <iostream>
 #include <experimental/filesystem>
 #include "dotfile.h"

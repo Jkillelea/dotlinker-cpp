@@ -1,3 +1,5 @@
+// This code is part of dotlinker-cpp
+// Copyright Jacob Killelea <jkillelea@protonmail.ch>
 #include <stdlib.h>  // realpath
 #include <limits.h>  // PATH_MAX
 #include <fstream>   // file exists

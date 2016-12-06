@@ -1,14 +1,16 @@
+// This code is part of dotlinker-cpp
+// Copyright Jacob Killelea <jkillelea@protonmail.ch>
 #include <cstdlib>   // exit
 #include <unistd.h>  // symlink
 #include <iostream>  // cout, cerr
-#include <fstream>
+#include <fstream>   // check file existence
 #include "dotfile.h" // class DotFile
 using namespace std;
 
 void err(string text, int code = 1); // prototype
 
 int main(int argc, const char* argv[]) {
-    
+
   if (argc < 2) { // didn't supply any options
     cerr << "[ERROR] need to give a filename" << endl;
     return 1;

@@ -1,3 +1,5 @@
+// This code is part of dotlinker-cpp
+// Copyright Jacob Killelea <jkillelea@protonmail.ch>
 #ifndef DOTFILE_H
 #define DOTFILE_H
 
