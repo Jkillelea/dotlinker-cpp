@@ -31,7 +31,7 @@ DotFile::~DotFile() {
 };
 
 bool DotFile::is_dotted() {
-  return basename[0] == '.' ? true : false;
+  return basename[0] == '.';
 };
 
 string DotFile::undot() {
