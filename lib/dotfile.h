@@ -7,6 +7,7 @@
 using std::string;
 
 class DotFile {
+private:
 public:
   bool exists;
   string basename, absolute_path, dotfile_path;

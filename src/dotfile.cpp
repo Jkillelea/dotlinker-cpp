@@ -1,9 +1,9 @@
 // This code is part of dotlinker-cpp
 // Copyright Jacob Killelea <jkillelea@protonmail.ch>
-#include <stdlib.h>  // realpath
-#include <limits.h>  // PATH_MAX
+#include <cstdlib>   // realpath
+#include <climits>   // PATH_MAX
 #include <fstream>   // file exists
-#include "dotfile.h" // classdef
+#include "dotfile.h" // classdef, string = std::string
 
 string base_name(const string& path); // prototypes
 

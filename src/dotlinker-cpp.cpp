@@ -4,7 +4,7 @@
 #include <unistd.h>  // symlink
 #include <iostream>  // cout, cerr
 #include <fstream>   // check file existence
-#include "dotfile.h" // class DotFile
+#include "dotfile.h" // class DotFile, type string = std::string
 using namespace std;
 
 void err(string text, int code = 1); // prototype
@@ -12,8 +12,7 @@ void err(string text, int code = 1); // prototype
 int main(int argc, const char* argv[]) {
 
   if (argc < 2) { // didn't supply any options
-    cerr << "[ERROR] need to give a filename" << endl;
-    return 1;
+    err("[ERROR] need to give a filename");
   }
 
   for (int i = 1; i < argc; i++) { // each supplied arg
@@ -36,7 +35,7 @@ int main(int argc, const char* argv[]) {
   return 0;
 }
 
-void err(string text, int code) {
+inline void err(string text, int code) {
   cerr << text << endl;
   exit(code);
 }

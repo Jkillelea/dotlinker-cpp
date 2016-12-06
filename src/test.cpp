@@ -21,7 +21,14 @@ int main(int argc, char const *argv[]) {
   // std::cout << "Dotfile path : " << dotfile.dotfile_path << std::endl;
   // return 0;
 
-  // fs::path p = "test\0";
-  fs::path p1 = argv[1];
+  fs::path p1;
+  try {
+    p1 = argv[1];
+  }
+  catch (std::logic_error e) {
+    std::cout << "You failed!" << std::endl;
+    return 1;
+  }
   std::cout << fs::absolute(p1) << std::endl;
+  return 0;
 }
