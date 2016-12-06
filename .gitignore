@@ -1,0 +1,4 @@
+build/*
+*.o
+dotlinker
+test

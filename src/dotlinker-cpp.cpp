@@ -1,0 +1,40 @@
+#include <cstdlib>   // exit
+#include <unistd.h>  // symlink
+#include <iostream>  // cout, cerr
+#include <fstream>
+#include "dotfile.h" // class DotFile
+using namespace std;
+
+void err(string text, int code = 1); // prototype
+
+int main(int argc, const char* argv[]) {
+    
+  if (argc < 2) { // didn't supply any options
+    cerr << "[ERROR] need to give a filename" << endl;
+    return 1;
+  }
+
+  for (int i = 1; i < argc; i++) { // each supplied arg
+    string path = argv[i];
+    if (path.substr(0, 1) == "-") continue; // skip configuration options
+
+    DotFile dotfile(path); // create object
+
+    if (ifstream(dotfile.dotfile_path.c_str()))
+      err("[ERROR] File already exists in linking location");
+
+    if (dotfile.exists) { // good file given
+      symlink(dotfile.absolute_path.c_str(), dotfile.dotfile_path.c_str());
+      cout << "linked " << dotfile.absolute_path << " to " << dotfile.dotfile_path << endl;
+      return 0;
+    } else {
+      err("Need to be given a real filepath");
+    }
+  }
+  return 0;
+}
+
+void err(string text, int code) {
+  cerr << text << endl;
+  exit(code);
+}
