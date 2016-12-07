@@ -1,29 +1,31 @@
 // This code is part of dotlinker-cpp
 // Copyright Jacob Killelea <jkillelea@protonmail.ch>
-#include <cstdlib>   // realpath
-#include <climits>   // PATH_MAX
-#include <fstream>   // file exists
-#include "dotfile.h" // classdef, string = std::string
+#include "dotfile.h" // classdef, string, <experimental/filesystem>
 
-string base_name(const string& path); // prototypes
+DotFile::DotFile(string strpath) { // string version
+  fs::path relpath(strpath);
+  _init(relpath);
+}
 
-DotFile::DotFile(string relative_filepath){
+DotFile::DotFile(fs::path fspath) { // fs::path version. Cant' chain constructors so
+_init(fspath);                    // they both call a different function
+}
+
+DotFile::DotFile(const char* charpath) { // char* path version
+  fs::path relpath(charpath);
+  _init(relpath);
+}
+
+void DotFile::_init(fs::path relpath) { // LOOK AT HOW MUCH EASY IT IS
   /* find absolute path, basename, dotfile path
-   * check file exists
-   */
-  char path[PATH_MAX];
-  string homedir = getenv("HOME"); // unreliable
-
-  const char* relpath = relative_filepath.c_str();
-  realpath(relpath, path); // fills buffer path
-
-  absolute_path = (string) path;
-  basename      = base_name(absolute_path);
+  * check file exists
+  */
+  homedir       = getenv("HOME"); // unreliable
+  absolute_path = fs::absolute(relpath);
+  basename      = relpath.filename();
+  exists        = fs::exists(absolute_path);
   dotfile_path  = homedir + "/" + dot();
-
-  std::ifstream file(absolute_path.c_str());
-  exists = file.good();
-};
+}
 
 // DotFile::~DotFile() {
 //   /* Look up how to actually do destructors in C++
@@ -44,8 +46,3 @@ string DotFile::undot() {
 string DotFile::dot() {
   return is_dotted() ? (basename) : ("." + basename);
 };
-
-string base_name(const string& path)
-{
-  return path.substr(path.find_last_of("/\\") + 1);
-}

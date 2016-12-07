@@ -6,13 +6,20 @@
 #include <string>
 using std::string;
 
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+
 class DotFile {
 private:
+  string homedir;
+  void _init(fs::path);
 public:
   bool exists;
   string basename, absolute_path, dotfile_path;
 
-  DotFile(string relative_filepath);
+  DotFile(string      strpath);
+  DotFile(fs::path    fspath);
+  DotFile(const char* charpath);
   // virtual ~DotFile();
   bool   is_dotted();
   string undot();
