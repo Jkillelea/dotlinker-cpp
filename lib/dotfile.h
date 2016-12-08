@@ -20,7 +20,7 @@ public:
   DotFile(string      strpath);
   DotFile(fs::path    fspath);
   DotFile(const char* charpath);
-  // virtual ~DotFile();
+
   bool   is_dotted();
   string undot();
   string dot();

@@ -1,6 +1,6 @@
 // This code is part of dotlinker-cpp
 // Copyright Jacob Killelea <jkillelea@protonmail.ch>
-#include "dotfile.h" // classdef, string, <experimental/filesystem>
+#include "dotfile.h" // classdef, string, filesystem
 
 DotFile::DotFile(string strpath) { // string version
   fs::path relpath(strpath);
@@ -8,7 +8,7 @@ DotFile::DotFile(string strpath) { // string version
 }
 
 DotFile::DotFile(fs::path fspath) { // fs::path version. Cant' chain constructors so
-_init(fspath);                    // they both call a different function
+  _init(fspath);                    // they both call a different function
 }
 
 DotFile::DotFile(const char* charpath) { // char* path version
@@ -26,11 +26,6 @@ void DotFile::_init(fs::path relpath) { // LOOK AT HOW MUCH EASY IT IS
   exists        = fs::exists(absolute_path);
   dotfile_path  = homedir + "/" + dot();
 }
-
-// DotFile::~DotFile() {
-//   /* Look up how to actually do destructors in C++
-//    */
-// };
 
 bool DotFile::is_dotted() {
   return basename[0] == '.';
