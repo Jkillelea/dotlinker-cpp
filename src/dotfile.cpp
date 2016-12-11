@@ -20,10 +20,10 @@ void DotFile::_init(fs::path relpath) { // LOOK AT HOW MUCH EASY IT IS
   /* find absolute path, basename, dotfile path
   * check file exists
   */
-  homedir       = getenv("HOME"); // unreliable
   absolute_path = fs::absolute(relpath);
   basename      = relpath.filename();
   exists        = fs::exists(absolute_path);
+  homedir       = getenv("HOME"); // unreliable
   dotfile_path  = homedir + "/" + dot();
 }
 

@@ -4,10 +4,9 @@
 #define DOTFILE_H
 
 #include <string>
-using std::string;
-
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
+using std::string;
 
 class DotFile {
 private:
