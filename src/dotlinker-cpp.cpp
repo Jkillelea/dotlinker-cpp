@@ -20,9 +20,9 @@ int main(int argc, const char* argv[]) {
 
     try {
       path = argv[i];
-    } catch (std::logic_error& e) { // failed to assign (no opts given)
-      std::cerr << "[ERROR] Error incountered parsing command line options" << std::endl;
-      std::cerr << e.what() << std::endl;
+    } catch (logic_error& e) { // failed to assign (no opts given)
+      cerr << "[ERROR] Error incountered parsing command line options" << endl;
+      cerr << e.what() << endl;
       return 1;
     }
 
@@ -34,7 +34,7 @@ int main(int argc, const char* argv[]) {
 
     if (dotfile.exists) { // good file given
         symlink(dotfile.absolute_path.c_str(), dotfile.dotfile_path.c_str());
-        std::cerr << ("linked " + dotfile.absolute_path + " to " + dotfile.dotfile_path) << std::endl;
+        cerr << ("linked " + dotfile.absolute_path + " to " + dotfile.dotfile_path) << endl;
       }
     else
       err(("Need to be given a real filepath instead of " + dotfile.absolute_path));
