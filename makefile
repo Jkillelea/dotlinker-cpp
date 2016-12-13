@@ -4,11 +4,12 @@ EXEC         = dotlinker
 BUILD-DIR    = build
 SRC-DIR      = src
 LIB-DIR      = lib
-NORMAL-CC    = g++
+# NORMAL-CC    = g++
+NORMAL-CC    = clang++
 ARM-ABI-CC   = arm-linux-gnueabi-g++
 ARM-ABIHF-CC = arm-linux-gnueabihf-g++
 # CFLAGS       += -static-libstdc++
-CFLAGS       += -std=c++17
+CFLAGS       += -std=c++14
 CFLAGS       += -Wall
 CFLAGS       += -I$(LIB-DIR)
 LFLAGS       += -lstdc++fs
