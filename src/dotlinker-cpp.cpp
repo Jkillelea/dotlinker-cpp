@@ -15,6 +15,7 @@ int main(int argc, const char* argv[]) {
     err("[ERROR] need to give a filename");
   }
 
+  // each arg
   for (int i = 1; i < argc; i++) {
 
     try {
@@ -23,7 +24,7 @@ int main(int argc, const char* argv[]) {
       err( ("[ERROR] Error incountered parsing command line options" + string(e.what())), 1);
     }
 
-    if (path.substr(0, 1) == "-") continue; // skip configuration options
+    if (path[0] == '-') continue; // skip configuration options (lol currently there are none)
     DotFile dotfile(path); // create object
 
     if (fs::exists(dotfile.dotfile_path))
@@ -36,8 +37,9 @@ int main(int argc, const char* argv[]) {
     else {
       err(("Need to be given a real filepath instead of " + dotfile.absolute_path));
     }
-  }
-  return 0;
+  } // end for-loop
+  
+  return 0; // done
 }
 
 inline void err(string text, int code) {
