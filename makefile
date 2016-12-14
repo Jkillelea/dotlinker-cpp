@@ -4,26 +4,26 @@ EXEC         = dotlinker
 BUILD-DIR    = build
 SRC-DIR      = src
 LIB-DIR      = lib
-# NORMAL-CC    = g++
-NORMAL-CC    = clang++
-ARM-ABI-CC   = arm-linux-gnueabi-g++
-ARM-ABIHF-CC = arm-linux-gnueabihf-g++
 # CFLAGS       += -static-libstdc++
 CFLAGS       += -std=c++14
 CFLAGS       += -Wall
 CFLAGS       += -I$(LIB-DIR)
 LFLAGS       += -lstdc++fs
-CC = $(NORMAL-CC)
+# CC    = g++
+CC    = clang++
 
 all: $(EXEC)
 
+remake:
+	$(MAKE) purge
+	$(MAKE)
+
 clean:
-	rm -f $(BUILD-DIR)/*.o
+	rm -rf $(BUILD-DIR)
 
 purge:
 	rm -f $(EXEC) test
 	$(MAKE) clean
-	rmdir $(BUILD-DIR)
 
 test: $(BUILD-DIR)/test.o $(BUILD-DIR)/dotfile.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
