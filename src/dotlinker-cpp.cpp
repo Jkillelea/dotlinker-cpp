@@ -3,7 +3,6 @@
 #include <cstdlib>   // exit
 #include <unistd.h>  // symlink
 #include <iostream>  // cerr
-#include <fstream>   // ifstream - check file existence
 #include "dotfile.h" // class DotFile, string
 using namespace std;
 
@@ -21,23 +20,22 @@ int main(int argc, const char* argv[]) {
     try {
       path = argv[i];
     } catch (logic_error& e) { // failed to assign (no opts given)
-      cerr << "[ERROR] Error incountered parsing command line options" << endl;
-      cerr << e.what() << endl;
-      return 1;
+      err( ("[ERROR] Error incountered parsing command line options" + string(e.what())), 1);
     }
 
     if (path.substr(0, 1) == "-") continue; // skip configuration options
     DotFile dotfile(path); // create object
 
-    if (ifstream(dotfile.dotfile_path.c_str()))
+    if (fs::exists(dotfile.dotfile_path))
       err("[ERROR] File already exists in linking location");
 
     if (dotfile.exists) { // good file given
         symlink(dotfile.absolute_path.c_str(), dotfile.dotfile_path.c_str());
         cerr << ("linked " + dotfile.absolute_path + " to " + dotfile.dotfile_path) << endl;
       }
-    else
+    else {
       err(("Need to be given a real filepath instead of " + dotfile.absolute_path));
+    }
   }
   return 0;
 }
