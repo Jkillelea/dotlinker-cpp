@@ -7,11 +7,11 @@ DotFile::DotFile(string strpath) { // string version
   _init(relpath);
 }
 
-DotFile::DotFile(fs::path fspath) { // fs::path version. Cant' chain constructors so
-  _init(fspath);                    // they both call a different function
+DotFile::DotFile(fs::path fspath) { // fs::path version. Can't chain constructors so they all call _init
+  _init(fspath);
 }
 
-DotFile::DotFile(const char* charpath) { // char* path version
+DotFile::DotFile(const char* charpath) { // char* path version. Mostly meant for reading directly from argv
   fs::path relpath(charpath);
   _init(relpath);
 }
@@ -20,10 +20,11 @@ void DotFile::_init(fs::path relpath) { // LOOK AT HOW MUCH EASY IT IS
   /* find absolute path, basename, dotfile path
   * check file exists
   */
+  homedir       = getenv("HOME"); // unreliable
+
   absolute_path = fs::absolute(relpath);
   basename      = relpath.filename();
   exists        = fs::exists(absolute_path);
-  homedir       = getenv("HOME"); // unreliable
   dotfile_path  = homedir + "/" + dot();
 }
 
