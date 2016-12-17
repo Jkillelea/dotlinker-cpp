@@ -3,11 +3,11 @@
 EXEC         = dotlinker
 BUILD-DIR    = build
 SRC-DIR      = src
-LIB-DIR      = lib
+INCLUDE-DIR  = include
 # CFLAGS       += -static-libstdc++
 CFLAGS       += -std=c++14
 CFLAGS       += -Wall
-CFLAGS       += -I$(LIB-DIR)
+CFLAGS       += -I$(INCLUDE-DIR)
 LFLAGS       += -lstdc++fs
 # CC    = g++
 CC    = clang++
