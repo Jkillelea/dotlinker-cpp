@@ -16,10 +16,11 @@ DotFile::DotFile(const char* charpath) { // char* path version. Mostly meant for
   _init(relpath);
 }
 
+/**
+* find absolute path, basename, dotfile path
+* check file exists
+*/
 void DotFile::_init(fs::path relpath) { // LOOK AT HOW MUCH EASY IT IS
-  /* find absolute path, basename, dotfile path
-  * check file exists
-  */
   homedir       = getenv("HOME"); // unreliable
 
   absolute_path = fs::absolute(relpath);
